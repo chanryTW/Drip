@@ -9,32 +9,42 @@ angular.module('app.routes', [])
   $stateProvider
     
 
-      .state('menu.home', {
-    url: '/page1',
+      .state('menu.derine', {
+    url: '/Derine',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/home.html',
-        controller: 'homeCtrl'
+        templateUrl: 'templates/derine.html',
+        controller: 'derineCtrl'
       }
     }
   })
 
-  .state('menu.cart', {
-    url: '/page2',
+  .state('menu.page7', {
+    url: '/personal',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/cart.html',
-        controller: 'cartCtrl'
+        templateUrl: 'templates/page7.html',
+        controller: 'page7Ctrl'
       }
     }
   })
 
-  .state('menu.cloud', {
-    url: '/page3',
+  .state('menu.page8', {
+    url: '/Description',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/cloud.html',
-        controller: 'cloudCtrl'
+        templateUrl: 'templates/page8.html',
+        controller: 'page8Ctrl'
+      }
+    }
+  })
+
+  .state('menu.page9', {
+    url: '/about',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/page9.html',
+        controller: 'page9Ctrl'
       }
     }
   })
@@ -45,7 +55,33 @@ angular.module('app.routes', [])
     controller: 'menuCtrl'
   })
 
-$urlRouterProvider.otherwise('/side-menu21/page1')
+  .state('menu.page4', {
+    url: '/page4',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/page4.html',
+        controller: 'page4Ctrl'
+      }
+    }
+  })
+
+  .state('welcome', {
+    url: '/welcome',
+    templateUrl: 'templates/welcome.html',
+    controller: 'welcomeCtrl'
+  })
+
+  .state('menu.page6', {
+    url: '/Signup',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/page6.html',
+        controller: 'page6Ctrl'
+      }
+    }
+  })
+
+$urlRouterProvider.otherwise('/welcome')
 
 
 });
