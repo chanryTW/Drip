@@ -1,0 +1,34 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-balanced">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="side-menu21"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left" id="side-menu21">
+    <ion-header-bar class="bar-balanced">
+      <div class="title">Menu</div>
+    </ion-header-bar>
+    <ion-content padding="false" class="side-menu-left has-header ">
+      <div class="spacer" style="width: 268px; height: 20px;"></div>
+      <div>
+        <img src="img/i9LLmKosTfawosogLL0K_LOGO_001.png" style="display: block; width: 50%; height: auto; margin-left: auto; margin-right: auto;">
+      </div>
+      <h3 id="menu-heading1" style="color:#A7A7A7;font-weight:400;text-align:center;">尚未登入</h3>
+      <div class="spacer" style="height: 20px;"></div>
+      <ion-list id="menu-list1">
+        <ion-item class="item-icon-left" id="menu-list-item1" ui-sref="menu.iChatMIS()" menu-close="">
+          <i class="icon ion-ios-home"></i>首頁</ion-item>
+        <ion-item class="item-icon-left" id="menu-list-item4" ui-sref="menu.page7()" menu-close="">
+          <i class="icon ion-android-person"></i>登入</ion-item>
+        <ion-item class="item-icon-left" id="menu-list-item3">
+          <i class="icon ion-gear-a"></i>設定</ion-item>
+        <ion-item class="item-icon-left" id="menu-list-item5" ui-sref="menu.developer()" menu-close="">
+          <i class="icon ion-person-stalker"></i>開發人員</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
