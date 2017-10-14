@@ -50,13 +50,13 @@ angular.module('app.routes', [])
   })
 
   .state('menu', {
-    url: '/side-menu21',
+    url: '/menu',
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
   })
 
   .state('menu.page4', {
-    url: '/page4',
+    url: '/login',
     views: {
       'side-menu21': {
         templateUrl: 'templates/page4.html',
@@ -65,10 +65,10 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('welcome', {
+  .state('page5', {
     url: '/welcome',
-    templateUrl: 'templates/welcome.html',
-    controller: 'welcomeCtrl'
+    templateUrl: 'templates/page5.html',
+    controller: 'page5Ctrl'
   })
 
   .state('menu.page6', {
