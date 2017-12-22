@@ -37,23 +37,23 @@ html,body{
     border: solid 1px #333;   
     overflow: hidden;
 }
-.col:before, .col:after{
+.bgbox:before, .bgbox:after{
     content: " ";
     position: absolute;
     width: 450px;
     height: 450px;
 
     left: 50%;
-
+    
     animation: wave 30s infinite linear;
 }
-.col:before {
+.bgbox:before {
     top: -370px;
     border-radius: 190px;
     background-color: rgba(255, 255, 255, 0.424);
 
 }
-.col:after {
+.bgbox:after {
     top: -380px;
     border-radius: 170px;
     background-color: rgb(255, 255, 255);
@@ -66,6 +66,10 @@ html,body{
     100%{
         transform: translateX(-50%) rotate(360deg);        
     }
+}
+.infobox {
+    position: absolute;
+    z-index: 1;
 }
 
 .card{
