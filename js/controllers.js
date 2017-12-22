@@ -14,7 +14,7 @@ function ($scope, $stateParams, $ionicPopup) {
             localStorage.setItem("LoginWay", "Signin"); // 登入方式標記為 首頁登入
             accountL.value="";
             pwdL.value="";
-            open("/#/page1/page2",'_self');
+            open("/ChanryTW2/#/page1/page2",'_self');
             // window.location.reload();
         }).catch(function(error) {
             var errorCode = error.code;
