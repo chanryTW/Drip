@@ -45,7 +45,7 @@ html,body{
 
     left: 50%;
 
-    animation: wave 13s infinite linear;
+    animation: wave 30s infinite linear;
 }
 .col:before {
     top: -370px;
