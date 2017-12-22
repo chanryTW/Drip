@@ -56,9 +56,16 @@ function ($scope, $stateParams, $ionicPopup) {
 }])
 
 // ----------------------------------------主頁面----------------------------------------
-.controller('page2Ctrl', ['$scope', '$stateParams',
-function ($scope, $stateParams) {
-    
+.controller('page2Ctrl', ['$scope', '$stateParams', '$ionicLoading',
+function ($scope, $stateParams, $ionicLoading) {
+    // 點擊設備
+    var Btn1 = document.getElementById("col");
+    Btn1.addEventListener("click",function(){
+        $ionicLoading.show({ // 開始跑圈圈
+            template: '你掉進無限迴圈...請重新整理'
+        });
+        // $ionicLoading.hide();
+    });
 
 }])
 
