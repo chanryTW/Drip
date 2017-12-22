@@ -70,8 +70,21 @@ html,body{
 .infobox {
     position: absolute;
     z-index: 1;
+    width: 100%;
+}
+.infobox:after {
+    z-index: -1;
+    content: "80%";
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.514);
+
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+/* 主頁的卡片 */
 .card-page2{
     border-radius: 10px;
 }
