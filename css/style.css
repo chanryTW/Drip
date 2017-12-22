@@ -33,9 +33,32 @@ html,body{
 
 /* -----------------------------------------------主頁面----------------------------------------------- */
 .col {
-    background-color: rgb(172, 172, 172);
-    border: solid 1px #000000;   
+    background-color: rgb(125, 199, 221);
+    border: solid 1px #333;   
+    overflow: hidden;
 }
+.col:before{
+    content: " ";
+    position: absolute;
+    width: 370px;
+    height: 370px;
+    border-radius: 150px;
+    background-color: #fff;
+
+    top: -300px;
+    left: 50%;
+
+    animation: wave 10s infinite linear;
+}
+@keyframes wave{
+    0%{
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100%{
+        transform: translateX(-50%) rotate(360deg);        
+    }
+}
+
 .card{
     border-radius: 10px;
 }
