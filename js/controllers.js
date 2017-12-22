@@ -63,8 +63,105 @@ function ($scope, $stateParams) {
 }])
 
 // ----------------------------------------設定頁面----------------------------------------
-.controller('page4Ctrl', ['$scope', '$stateParams',
-function ($scope, $stateParams) {
+.controller('page4Ctrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup',
+function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
+    // 修改暱稱功能
+    var SaveBtn1 = document.getElementById("page4_savebtn1");
+    var uploadFileInput1 = document.getElementById("uploadFileInput1");    
+    SaveBtn1.addEventListener("click",function(){
+        $ionicLoading.show({ // 開始跑圈圈
+            template: '更新暱稱中...'
+        });
+        var uid = localStorage.getItem("uid"); // 取回uid
+        var db = firebase.database();
+        db.ref("使用者/" + uid).update({暱稱: uploadFileInput1.value},
+        function (error) {
+            if (error) {
+                console.log("修改失敗");
+                $ionicLoading.hide();
+                console.log(error);
+                var alertPopup = $ionicPopup.alert({
+                    title: '修改暱稱失敗',
+                    template: error
+                });
+            }
+            else {
+                console.log("修改成功");
+                $ionicLoading.hide();
+                var alertPopup = $ionicPopup.alert({
+                    title: '成功',
+                    template: '暱稱修改完成。'
+                });
+                // 更新選單的暱稱
+                var userId = localStorage.getItem("uid");
+                return firebase.database().ref('/使用者/' + userId).once('value').then(function(snapshot) {
+                    var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
+                    document.getElementById("menu-heading1").innerText = username; 
+                });
+            }
+        });
+    });
+    // 上傳大頭照功能
+    var SaveBtn2 = document.getElementById("page4_savebtn2");    
+    var uploadFileInput2 = document.getElementById("uploadFileInput2");
+    SaveBtn2.addEventListener("click",function(){
+        $ionicLoading.show({ // 開始跑圈圈
+            template: '上傳圖片中...'
+        });
+        var file = uploadFileInput2.files[0];
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        var uploadTask = storageRef.child('images/'+localStorage.getItem("uid")).put(file);
+        uploadTask.on('state_changed', function(snapshot){
+            // 取得檔案上傳狀態，並用數字顯示
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('已上傳 ' + progress + '%');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: 
+                console.log('上傳暫停');
+                break;
+                case firebase.storage.TaskState.RUNNING: 
+                console.log('上傳中');
+                break;
+            }
+        }, function(error) {
+            console.log("上傳失敗");
+            $ionicLoading.hide();
+            console.log(error);
+            var alertPopup = $ionicPopup.alert({
+                title: '上傳圖片失敗',
+                template: error
+            });
+        }, function() {
+            console.log("上傳成功");
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: '成功',
+                template: '更換照片完成。'
+            });
+            // 更新menu的大頭照
+            var storage = firebase.storage();
+            var storageRef = storage.ref();
+            storageRef.child('images/'+localStorage.getItem("uid")).getDownloadURL().then(function(url) {
+                document.getElementById("menu-img").src=url;
+            })
+        });
+    },false);
+   
 
-
+        // 更新menu的大頭照
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        storageRef.child('images/'+localStorage.getItem("uid")).getDownloadURL().then(function(url) {
+            document.getElementById("menu-img").src=url;
+        })
+        
+        // 更新選單的暱稱
+        var userId = localStorage.getItem("uid");
+        return firebase.database().ref('/使用者/' + userId).once('value').then(function(snapshot) {
+            var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
+            // 儲存uid，之後讀取與寫入資料用
+            localStorage.setItem("username", username);
+            document.getElementById("menu-heading1").innerText = username +"，您好"; 
+        });
 }])
