@@ -58,7 +58,7 @@ function ($scope, $stateParams, $ionicPopup) {
 // ----------------------------------------主頁面----------------------------------------
 .controller('page2Ctrl', ['$scope', '$stateParams',
 function ($scope, $stateParams) {
-
+    
 
 }])
 
