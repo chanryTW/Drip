@@ -55,8 +55,45 @@ function ($scope, $stateParams, $ionicPopup) {
 }])
 
 // ----------------------------------------主頁面----------------------------------------
-.controller('page2Ctrl', ['$scope', '$stateParams', '$ionicLoading',
-function ($scope, $stateParams, $ionicLoading) {
+.controller('page2Ctrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup',
+function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
+    // 點擊設備
+    var Btn1 = document.getElementById("col");
+    Btn1.addEventListener("click",function(){
+        // $ionicLoading.show({ // 開始跑圈圈
+        //     template: '你掉進無限迴圈...請重新整理'
+        // });
+        // 彈出視窗
+        var myPopup = $ionicPopup.show({
+            template: '<input type="password" ng-model="data.wifi">',
+            title: '更新資料',
+            subTitle: '請輸入點滴監控設備A0001之初始值',
+            scope: $scope,
+            buttons: [
+            { text: '取消' },
+            {
+                text: '<b>更新</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                if (!$scope.data.wifi) {
+                    //不允许用户关闭，除非他键入wifi密码
+                    e.preventDefault();
+                } else {
+                    return $scope.data.wifi;
+                }
+                }
+            },
+            ]
+        });
+        myPopup.then(function(res) {
+            console.log('Tapped!', res);
+        });
+        $timeout(function() {
+            myPopup.close(); //由于某种原因3秒后关闭弹出
+        }, 3000);
+        // $ionicLoading.hide();
+    });
+
     // 更新menu的大頭照
     var storage = firebase.storage();
     var storageRef = storage.ref();
@@ -73,16 +110,6 @@ function ($scope, $stateParams, $ionicLoading) {
         document.getElementById("menu-heading1").innerText = username;
         document.getElementById("menu-heading2").innerText = username +"，您好"; 
     });
-
-    // 點擊設備
-    var Btn1 = document.getElementById("col");
-    Btn1.addEventListener("click",function(){
-        $ionicLoading.show({ // 開始跑圈圈
-            template: '你掉進無限迴圈...請重新整理'
-        });
-        // $ionicLoading.hide();
-    });
-
 }])
 
 // ----------------------------------------設定頁面----------------------------------------
