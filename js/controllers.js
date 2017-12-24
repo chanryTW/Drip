@@ -67,7 +67,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
         var myPopup = $ionicPopup.show({
             template: '<input type="password" ng-model="data.wifi">',
             title: '更新資料',
-            subTitle: '請輸入點滴監控設備A0001之初始值',
+            subTitle: '請輸入點滴A0001之目前水量',
             scope: $scope,
             buttons: [
             { text: '取消' },
