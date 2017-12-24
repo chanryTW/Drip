@@ -11,7 +11,6 @@ function ($scope, $stateParams, $ionicPopup) {
         console.log(accountL.value);
         firebase.auth().signInWithEmailAndPassword(accountL.value, pwdL.value).then(function(){
             console.log("登入成功");
-            localStorage.setItem("LoginWay", "Signin"); // 登入方式標記為 首頁登入
             accountL.value="";
             pwdL.value="";
             open("/ChanryTW2/#/page1/page2",'_self');
@@ -58,15 +57,6 @@ function ($scope, $stateParams, $ionicPopup) {
 // ----------------------------------------主頁面----------------------------------------
 .controller('page2Ctrl', ['$scope', '$stateParams', '$ionicLoading',
 function ($scope, $stateParams, $ionicLoading) {
-    // 點擊設備
-    var Btn1 = document.getElementById("col");
-    Btn1.addEventListener("click",function(){
-        $ionicLoading.show({ // 開始跑圈圈
-            template: '你掉進無限迴圈...請重新整理'
-        });
-        // $ionicLoading.hide();
-    });
-
     // 更新menu的大頭照
     var storage = firebase.storage();
     var storageRef = storage.ref();
@@ -83,11 +73,22 @@ function ($scope, $stateParams, $ionicLoading) {
         document.getElementById("menu-heading1").innerText = username +"，您好"; 
     });
 
+    // 點擊設備
+    var Btn1 = document.getElementById("col");
+    Btn1.addEventListener("click",function(){
+        $ionicLoading.show({ // 開始跑圈圈
+            template: '你掉進無限迴圈...請重新整理'
+        });
+        // $ionicLoading.hide();
+    });
+
 }])
 
 // ----------------------------------------設定頁面----------------------------------------
 .controller('page4Ctrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup',
 function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
+    
+    
     // 修改暱稱功能
     var SaveBtn1 = document.getElementById("page4_savebtn1");
     var uploadFileInput1 = document.getElementById("uploadFileInput1");    
@@ -183,5 +184,20 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
         });
     },false);
 
+    // 更新menu的大頭照
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+    storageRef.child('images/'+localStorage.getItem("uid")).getDownloadURL().then(function(url) {
+        document.getElementById("menu-img").src=url;
+    })
+    
+    // 更新選單的暱稱
+    var userId = localStorage.getItem("uid");
+    return firebase.database().ref('/使用者/' + userId).once('value').then(function(snapshot) {
+        var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
+        // 儲存uid，之後讀取與寫入資料用
+        localStorage.setItem("username", username);
+        document.getElementById("menu-heading1").innerText = username +"，您好"; 
+    });
     
 }])
