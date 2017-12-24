@@ -70,7 +70,8 @@ function ($scope, $stateParams, $ionicLoading) {
         var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
         // 儲存uid，之後讀取與寫入資料用
         localStorage.setItem("username", username);
-        document.getElementById("menu-heading1").innerText = username; 
+        document.getElementById("menu-heading1").innerText = username;
+        document.getElementById("menu-heading2").innerText = username +"，您好"; 
     });
 
     // 點擊設備
@@ -197,7 +198,8 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
         var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
         // 儲存uid，之後讀取與寫入資料用
         localStorage.setItem("username", username);
-        document.getElementById("menu-heading1").innerText = username +"，您好"; 
+        document.getElementById("menu-heading1").innerText = username; 
+        document.getElementById("menu-heading2").innerText = username +"，您好"; 
     });
     
 }])
