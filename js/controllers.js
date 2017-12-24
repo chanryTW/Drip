@@ -67,6 +67,22 @@ function ($scope, $stateParams, $ionicLoading) {
         // $ionicLoading.hide();
     });
 
+    // 更新menu的大頭照
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+    storageRef.child('images/'+localStorage.getItem("uid")).getDownloadURL().then(function(url) {
+        document.getElementById("menu-img").src=url;
+    })
+    
+    // 更新選單的暱稱
+    var userId = localStorage.getItem("uid");
+    return firebase.database().ref('/使用者/' + userId).once('value').then(function(snapshot) {
+        var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
+        // 儲存uid，之後讀取與寫入資料用
+        localStorage.setItem("username", username);
+        document.getElementById("menu-heading1").innerText = username +"，您好"; 
+    });
+
 }])
 
 // ----------------------------------------設定頁面----------------------------------------
@@ -167,19 +183,5 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
         });
     },false);
 
-    // 更新menu的大頭照
-    var storage = firebase.storage();
-    var storageRef = storage.ref();
-    storageRef.child('images/'+localStorage.getItem("uid")).getDownloadURL().then(function(url) {
-        document.getElementById("menu-img").src=url;
-    })
     
-    // 更新選單的暱稱
-    var userId = localStorage.getItem("uid");
-    return firebase.database().ref('/使用者/' + userId).once('value').then(function(snapshot) {
-        var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
-        // 儲存uid，之後讀取與寫入資料用
-        localStorage.setItem("username", username);
-        document.getElementById("menu-heading1").innerText = username +"，您好"; 
-    });
 }])
