@@ -55,43 +55,20 @@ function ($scope, $stateParams, $ionicPopup) {
 }])
 
 // ----------------------------------------主頁面----------------------------------------
-.controller('page2Ctrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup',
-function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
+.controller('page2Ctrl', ['$scope', '$stateParams', '$ionicPopup',
+function ($scope, $stateParams, $ionicPopup) {
     // 點擊設備
     var Btn1 = document.getElementById("col");
     Btn1.addEventListener("click",function(){
-        // $ionicLoading.show({ // 開始跑圈圈
-        //     template: '你掉進無限迴圈...請重新整理'
-        // });
         // 彈出視窗
-        var myPopup = $ionicPopup.show({
-            template: '<input type="password" ng-model="data.wifi">',
-            title: '更新資料',
-            subTitle: '請輸入點滴A0001之目前水量',
-            scope: $scope,
-            buttons: [
-            { text: '取消' },
-            {
-                text: '<b>更新</b>',
-                type: 'button-positive',
-                onTap: function(e) {
-                if (!$scope.data.wifi) {
-                    //不允许用户关闭，除非他键入wifi密码
-                    e.preventDefault();
-                } else {
-                    return $scope.data.wifi;
-                }
-                }
-            },
-            ]
-        });
-        myPopup.then(function(res) {
-            console.log('Tapped!', res);
-        });
-        $timeout(function() {
-            myPopup.close(); //由于某种原因3秒后关闭弹出
-        }, 3000);
-        // $ionicLoading.hide();
+        $ionicPopup.prompt({
+            title: '更新水量',
+            template: '請輸入『點滴A00001』目前水量(ml)',
+            inputType: 'text',
+            inputPlaceholder: '500'
+          }).then(function(res) {
+            console.log('Your 水量 is', res);
+          });
     });
 
     // 更新menu的大頭照
