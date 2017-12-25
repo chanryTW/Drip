@@ -58,7 +58,8 @@ function ($scope, $stateParams, $ionicPopup) {
 .controller('page2Ctrl', ['$scope', '$stateParams', '$ionicPopup',
 function ($scope, $stateParams, $ionicPopup) {
     // 彈出視窗    
-    function CPopup() {
+    function CPopup(i) {
+        console.log('這是編號'+i+'的設備');
         $ionicPopup.prompt({
             title: '更新容量',
             template: '請輸入『點滴A00001』容量(ml)',
@@ -89,46 +90,64 @@ function ($scope, $stateParams, $ionicPopup) {
         });
     }
 
-    // 點擊設備
-    $('#col1').click(function(){
-        CPopup();
-    });
+    // var pa =[90,50,40,30,20,10]; //模擬資料 百分比
+    var pa =[80,47,72,35,18,63]; //模擬資料 百分比
+    // 動態加入開始
+    for (var i=1;i<=6;i++){
+        // 加入Element
+        var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">ABCD12345670<br>2017-12-07 04:07:20<br>護理師：Mary<br>病床號：A-3-01-00<br>藥品名：IV-1<br>計算已滴數量:121<br>滴速(滴量/分鐘)：63<br>點滴袋容量：342/500ml<br>預測剩餘時間：00:32:46<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
+        $(".row").append(txt1);
+        // 點擊設備事件 <<目前有點狀況
+        $('#col'+i).click(function(){
+            CPopup(i);
+        });
+        // 加入水波顏色 , 加入水波高度        
+        if (pa[i-1]>=90){
+            $('#col'+i).addClass('col_blue');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -430px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -440px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
+        } else if (pa[i-1]>=80){
+            $('#col'+i).addClass('col_blue');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -410px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -420px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
+        } else if (pa[i-1]>=70){
+            $('#col'+i).addClass('col_blue');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -390px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -400px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        } else if (pa[i-1]>=60){
+            $('#col'+i).addClass('col_blue');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -370px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -380px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        } else if (pa[i-1]>=50){
+            $('#col'+i).addClass('col_blue');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -350px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -360px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        } else if (pa[i-1]>=40){
+            $('#col'+i).addClass('col_yellow');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -330px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -340px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        } else if (pa[i-1]>=30){
+            $('#col'+i).addClass('col_yellow');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -310px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -320px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        } else if (pa[i-1]>=20){
+            $('#col'+i).addClass('col_yellow');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -290px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -300px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        } else if (pa[i-1]>=10){
+            $('#col'+i).addClass('col_red');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -270px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -280px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        } else{
+            $('#col'+i).addClass('col_red');
+            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -250px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -260px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        }
+        // 加入百分比數字
+        document.styleSheets[0].addRule('.infobox'+i,'position: absolute; z-index: 1; width: 100%;');             
+        document.styleSheets[0].addRule('.infobox'+i+':after','content: "'+pa[i-1]+'%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
 
-    // 動態加入設備資料
-        // 改顏色
-        $('#col1').addClass('col_blue');
-        $('#col2').addClass('col_yellow');
-        $('#col3').addClass('col_blue');
-        $('#col4').addClass('col_yellow');
-        $('#col5').addClass('col_red');
-        $('#col6').addClass('col_blue');
-        // 改水波高度
-        document.styleSheets[0].addRule('.bgbox1:before','top: -400px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox1:after','top: -410px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox2:before','top: -325px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox2:after','top: -335px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox3:before','top: -380px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox3:after','top: -390px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox4:before','top: -310px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox4:after','top: -320px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox5:before','top: -290px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox5:after','top: -300px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox6:before','top: -360px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        document.styleSheets[0].addRule('.bgbox6:after','top: -370px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');     
-        // 改百分比數字
-        document.styleSheets[0].addRule('.infobox1','position: absolute; z-index: 1; width: 100%;'); 
-        document.styleSheets[0].addRule('.infobox1:after','content: "80%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
-        document.styleSheets[0].addRule('.infobox2','position: absolute; z-index: 1; width: 100%;'); 
-        document.styleSheets[0].addRule('.infobox2:after','content: "47%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
-        document.styleSheets[0].addRule('.infobox3','position: absolute; z-index: 1; width: 100%;'); 
-        document.styleSheets[0].addRule('.infobox3:after','content: "72%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
-        document.styleSheets[0].addRule('.infobox4','position: absolute; z-index: 1; width: 100%;'); 
-        document.styleSheets[0].addRule('.infobox4:after','content: "35%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
-        document.styleSheets[0].addRule('.infobox5','position: absolute; z-index: 1; width: 100%;'); 
-        document.styleSheets[0].addRule('.infobox5:after','content: "18%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
-        document.styleSheets[0].addRule('.infobox6','position: absolute; z-index: 1; width: 100%;'); 
-        document.styleSheets[0].addRule('.infobox6:after','content: "63%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
-    
+    }
 
     // 顯示系統時間
     ShowTime();        
