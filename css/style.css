@@ -32,6 +32,21 @@ html,body{
 }
 
 /* -----------------------------------------------主頁面----------------------------------------------- */
+#page2-heading2,#timeStr {
+    color: #fff;
+    display: inline-block;
+    width: 49%;
+}
+#timeStr {
+    text-align: right;
+}
+@media (max-width: 729px) {
+    #page2-heading2,#timeStr {
+        display: block;
+        width: 100%;
+    }
+}
+
 .col {
     border: solid 1px #333;   
     overflow: hidden;
