@@ -130,18 +130,19 @@ function ($scope, $stateParams, $ionicPopup) {
         document.styleSheets[0].addRule('.infobox6:after','content: "63%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
     
 
-        ShowTime();        
-        function ShowTime(){
-            var NowDate=new Date();
-            var h=NowDate.getHours();
-            var m=NowDate.getMinutes();
-            var s=NowDate.getSeconds();　
-            var y1=NowDate.getFullYear();
-            var y2=NowDate.getMonth()+1;
-            var y3=NowDate.getDate();
-            document.getElementById('timeStr').innerHTML = '系統時間：'+y1+'年'+y2+'月'+y3+'日'+h+'時'+m+'分'+s+'秒';
-            setTimeout(ShowTime,1000);
-        }
+    // 顯示系統時間
+    ShowTime();        
+    function ShowTime(){
+        var NowDate=new Date();
+        var h=NowDate.getHours();
+        var m=NowDate.getMinutes();
+        var s=NowDate.getSeconds();　
+        var y1=NowDate.getFullYear();
+        var y2=NowDate.getMonth()+1;
+        var y3=NowDate.getDate();
+        document.getElementById('timeStr').innerHTML = '系統時間：'+y1+'年'+y2+'月'+y3+'日'+h+'時'+m+'分'+s+'秒';
+        setTimeout(ShowTime,1000);
+    }
 
     // 更新主頁的暱稱
     var userId = localStorage.getItem("uid");
