@@ -57,17 +57,41 @@ function ($scope, $stateParams, $ionicPopup) {
 // ----------------------------------------主頁面----------------------------------------
 .controller('page2Ctrl', ['$scope', '$stateParams', '$ionicPopup',
 function ($scope, $stateParams, $ionicPopup) {
+    // 彈出視窗    
+    function CPopup() {
+        $ionicPopup.prompt({
+            title: '更新容量',
+            template: '請輸入『點滴A00001』容量(ml)',
+            inputType: 'text',
+            inputPlaceholder: '500',
+            cancelText: '取消',
+            okText: '下一步'
+        }).then(function(res) {
+            if(res) {
+                console.log('容量 is', res);
+                $ionicPopup.prompt({
+                    title: '更新水量',
+                    template: '請輸入『點滴A00001』水量(ml)',
+                    inputType: 'text',
+                    inputPlaceholder: '300',
+                    cancelText: '取消',
+                    okText: '更新'
+                }).then(function(res) {
+                    if(res) {
+                        console.log('水量 is', res);
+                    } else {
+                        console.log('未輸入水量');
+                    }
+                });
+            } else {
+                console.log('未輸入容量');
+            }
+        });
+    }
+
     // 點擊設備
     $('#col1').click(function(){
-        // 彈出視窗
-        $ionicPopup.prompt({
-            title: '更新水量',
-            template: '請輸入『點滴A00001』目前水量(ml)',
-            inputType: 'text',
-            inputPlaceholder: '500'
-        }).then(function(res) {
-            console.log('Your 水量 is', res);
-        });
+        CPopup();
     });
 
     // 動態加入設備資料
