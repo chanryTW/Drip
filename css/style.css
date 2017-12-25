@@ -36,92 +36,14 @@ html,body{
     border: solid 1px #333;   
     overflow: hidden;
 }
-.col1 {
+.col_blue {
     background-color: rgb(125, 199, 221);
 }
-.col2 {
+.col_yellow {
     background-color: rgb(221, 219, 125);
 }
-.col3 {
-    background-color: rgb(125, 199, 221);
-}
-.col4 {
-    background-color: rgb(221, 219, 125);
-}
-.col5 {
+.col_red {
     background-color: rgb(221, 125, 125);
-}
-.col6 {
-    background-color: rgb(125, 199, 221);
-}
-
-.bgbox1:before,.bgbox1:after,.bgbox2:before,.bgbox2:after,.bgbox3:before,.bgbox3:after,.bgbox4:before,.bgbox4:after,.bgbox5:before,.bgbox5:after,.bgbox6:before,.bgbox6:after{
-    content: " ";
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    left: 50%;
-    animation: wave 30s infinite linear;
-}
-.bgbox1:before {
-    top: -400px;
-    border-radius: 190px;
-    background-color: rgba(255, 255, 255, 0.424);
-}
-.bgbox1:after {
-    top: -410px;
-    border-radius: 170px;
-    background-color: rgb(255, 255, 255);
-}
-.bgbox2:before {
-    top: -325px;
-    border-radius: 190px;
-    background-color: rgba(255, 255, 255, 0.424);
-}
-.bgbox2:after {
-    top: -335px;
-    border-radius: 170px;
-    background-color: rgb(255, 255, 255);
-}
-.bgbox3:before {
-    top: -380px;
-    border-radius: 190px;
-    background-color: rgba(255, 255, 255, 0.424);
-}
-.bgbox3:after {
-    top: -390px;
-    border-radius: 170px;
-    background-color: rgb(255, 255, 255);
-}
-.bgbox4:before {
-    top: -310px;
-    border-radius: 190px;
-    background-color: rgba(255, 255, 255, 0.424);
-}
-.bgbox4:after {
-    top: -320px;
-    border-radius: 170px;
-    background-color: rgb(255, 255, 255);
-}
-.bgbox5:before {
-    top: -290px;
-    border-radius: 190px;
-    background-color: rgba(255, 255, 255, 0.424);
-}
-.bgbox5:after {
-    top: -300px;
-    border-radius: 170px;
-    background-color: rgb(255, 255, 255);
-}
-.bgbox6:before {
-    top: -360px;
-    border-radius: 190px;
-    background-color: rgba(255, 255, 255, 0.424);
-}
-.bgbox6:after {
-    top: -370px;
-    border-radius: 170px;
-    background-color: rgb(255, 255, 255);
 }
 
 @keyframes wave{
@@ -131,77 +53,6 @@ html,body{
     100%{
         transform: translateX(-50%) rotate(360deg);        
     }
-}
-.infobox1, .infobox2, .infobox3, .infobox4, .infobox5, .infobox6 {
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-}
-.infobox1:after {
-    z-index: -1;
-    content: "80%";
-    font-size: 80px;
-    color: rgba(255, 255, 255, 0.514);
-
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.infobox2:after {
-    z-index: -1;
-    content: "47%";
-    font-size: 80px;
-    color: rgba(255, 255, 255, 0.514);
-
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.infobox3:after {
-    z-index: -1;
-    content: "72%";
-    font-size: 80px;
-    color: rgba(255, 255, 255, 0.514);
-
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.infobox4:after {
-    z-index: -1;
-    content: "35%";
-    font-size: 80px;
-    color: rgba(255, 255, 255, 0.514);
-
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.infobox5:after {
-    z-index: -1;
-    content: "18%";
-    font-size: 80px;
-    color: rgba(255, 255, 255, 0.514);
-
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.infobox6:after {
-    z-index: -1;
-    content: "63%";
-    font-size: 80px;
-    color: rgba(255, 255, 255, 0.514);
-
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 /* 主頁的卡片 */

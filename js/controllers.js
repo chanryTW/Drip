@@ -58,34 +58,61 @@ function ($scope, $stateParams, $ionicPopup) {
 .controller('page2Ctrl', ['$scope', '$stateParams', '$ionicPopup',
 function ($scope, $stateParams, $ionicPopup) {
     // 點擊設備
-    var Btn1 = document.getElementById("col");
-    Btn1.addEventListener("click",function(){
+    $('#col1').click(function(){
         // 彈出視窗
         $ionicPopup.prompt({
             title: '更新水量',
             template: '請輸入『點滴A00001』目前水量(ml)',
             inputType: 'text',
             inputPlaceholder: '500'
-          }).then(function(res) {
+        }).then(function(res) {
             console.log('Your 水量 is', res);
-          });
+        });
     });
 
-    // 更新menu的大頭照
-    var storage = firebase.storage();
-    var storageRef = storage.ref();
-    storageRef.child('images/'+localStorage.getItem("uid")).getDownloadURL().then(function(url) {
-        document.getElementById("menu-img").src=url;
-    })
-    
-    // 更新選單的暱稱
+    // 動態加入設備資料
+        // 改顏色
+        $('#col1').addClass('col_blue');
+        $('#col2').addClass('col_yellow');
+        $('#col3').addClass('col_blue');
+        $('#col4').addClass('col_yellow');
+        $('#col5').addClass('col_red');
+        $('#col6').addClass('col_blue');
+        // 改水波高度
+        document.styleSheets[0].addRule('.bgbox1:before','top: -400px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox1:after','top: -410px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox2:before','top: -325px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox2:after','top: -335px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox3:before','top: -380px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox3:after','top: -390px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox4:before','top: -310px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox4:after','top: -320px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox5:before','top: -290px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox5:after','top: -300px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox6:before','top: -360px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+        document.styleSheets[0].addRule('.bgbox6:after','top: -370px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');     
+        // 改百分比數字
+        document.styleSheets[0].addRule('.infobox1','position: absolute; z-index: 1; width: 100%;'); 
+        document.styleSheets[0].addRule('.infobox1:after','content: "80%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+        document.styleSheets[0].addRule('.infobox2','position: absolute; z-index: 1; width: 100%;'); 
+        document.styleSheets[0].addRule('.infobox2:after','content: "47%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+        document.styleSheets[0].addRule('.infobox3','position: absolute; z-index: 1; width: 100%;'); 
+        document.styleSheets[0].addRule('.infobox3:after','content: "72%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+        document.styleSheets[0].addRule('.infobox4','position: absolute; z-index: 1; width: 100%;'); 
+        document.styleSheets[0].addRule('.infobox4:after','content: "35%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+        document.styleSheets[0].addRule('.infobox5','position: absolute; z-index: 1; width: 100%;'); 
+        document.styleSheets[0].addRule('.infobox5:after','content: "18%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+        document.styleSheets[0].addRule('.infobox6','position: absolute; z-index: 1; width: 100%;'); 
+        document.styleSheets[0].addRule('.infobox6:after','content: "63%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+        
+
+    // 更新主頁的暱稱
     var userId = localStorage.getItem("uid");
     return firebase.database().ref('/使用者/' + userId).once('value').then(function(snapshot) {
         var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
         // 儲存uid，之後讀取與寫入資料用
         localStorage.setItem("username", username);
         document.getElementById("menu-heading1").innerText = username;
-        document.getElementById("menu-heading2").innerText = username +"，您好"; 
     });
 }])
 
@@ -202,7 +229,6 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
         var username = (snapshot.val() && snapshot.val().暱稱) || 'Anonymous';
         // 儲存uid，之後讀取與寫入資料用
         localStorage.setItem("username", username);
-        document.getElementById("menu-heading1").innerText = username; 
         document.getElementById("menu-heading2").innerText = username +"，您好"; 
     });
     
