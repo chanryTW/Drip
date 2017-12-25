@@ -91,12 +91,12 @@ function ($scope, $stateParams, $ionicPopup) {
     }
 
     // var pa =[90,50,40,30,20,10]; //模擬資料 百分比
-    var pa =[80,47,72,35,18,63]; //模擬資料 百分比
+    var pa =[80,47,72,35,18,63,74,84,57,53,77,35,86,85,96,90,85,70]; //模擬資料 百分比
     // 動態加入開始
-    for (var i=1;i<=6;i++){
+    for (var i=1;i<=pa.length;i++){
         // 加入Element
         var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">ABCD12345670<br>2017-12-07 04:07:20<br>護理師：Mary<br>病床號：A-3-01-00<br>藥品名：IV-1<br>計算已滴數量:121<br>滴速(滴量/分鐘)：63<br>點滴袋容量：342/500ml<br>預測剩餘時間：00:32:46<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
-        $(".row").append(txt1);
+        $(".row1").append(txt1);
         // 點擊設備事件 <<目前有點狀況
         $('#col'+i).click(function(){
             CPopup(i);
