@@ -145,9 +145,10 @@ function ($scope, $stateParams, $ionicPopup) {
         }
         // 加入百分比數字
         document.styleSheets[0].addRule('.infobox'+i,'position: absolute; z-index: 1; width: 100%;');             
-        document.styleSheets[0].addRule('.infobox'+i+':after','content: "'+pa[i-1]+'%"; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+        document.styleSheets[0].addRule('.infobox'+i+':after','content: "'+pa[i-1]+'%"; z-index:-1; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
 
     }
+
 
     // 顯示系統時間
     ShowTime();        
