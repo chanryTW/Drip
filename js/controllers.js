@@ -90,65 +90,67 @@ function ($scope, $stateParams, $ionicPopup) {
         });
     }
 
-    // var pa =[90,50,40,30,20,10]; //模擬資料 百分比
-    var pa =[80,47,72,35,18,63,74,84,57,53,77,35,86,85,96,90,85,70]; //模擬資料 百分比
-    // 動態加入開始
-    for (var i=1;i<=pa.length;i++){
-        // 加入Element
-        var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">ABCD12345670<br>2017-12-07 04:07:20<br>護理師：Mary<br>病床號：A-3-01-00<br>藥品名：IV-1<br>計算已滴數量:121<br>滴速(滴量/分鐘)：63<br>點滴袋容量：342/500ml<br>預測剩餘時間：00:32:46<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
-        $(".row1").append(txt1);
-        // 點擊設備事件 <<目前有點狀況
-        $('#col'+i).click(function(){
-            CPopup(i);
-        });
-        // 加入水波顏色 , 加入水波高度        
-        if (pa[i-1]>=90){
-            $('#col'+i).addClass('col_blue');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -430px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -440px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
-        } else if (pa[i-1]>=80){
-            $('#col'+i).addClass('col_blue');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -410px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -420px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
-        } else if (pa[i-1]>=70){
-            $('#col'+i).addClass('col_blue');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -390px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -400px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        } else if (pa[i-1]>=60){
-            $('#col'+i).addClass('col_blue');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -370px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -380px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        } else if (pa[i-1]>=50){
-            $('#col'+i).addClass('col_blue');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -350px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -360px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        } else if (pa[i-1]>=40){
-            $('#col'+i).addClass('col_yellow');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -330px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -340px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        } else if (pa[i-1]>=30){
-            $('#col'+i).addClass('col_yellow');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -310px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -320px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        } else if (pa[i-1]>=20){
-            $('#col'+i).addClass('col_yellow');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -290px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -300px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        } else if (pa[i-1]>=10){
-            $('#col'+i).addClass('col_red');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -270px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -280px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-        } else{
-            $('#col'+i).addClass('col_red');
-            document.styleSheets[0].addRule('.bgbox'+i+':before','top: -250px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
-            document.styleSheets[0].addRule('.bgbox'+i+':after','top: -260px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+    // 取得資料
+    firebase.database().ref('/aDi/device/').once('value').then(function(snapshot) {
+        var device = Object.keys(snapshot.val()).length; //取得有幾個設備
+        var pa =[80,47,72,35,18,63,74,84,57,53,77,35,86,85,96,90,85,70]; //模擬資料 百分比
+
+        // 動態加入開始
+        for (var i=1;i<=device;i++){
+            // 加入Element
+            var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>2017-12-07 04:07:20<br>護理師：Mary<br>病床號：A-3-01-00<br>藥品名：IV-1<br>計算已滴數量:121<br>滴速(滴量/分鐘)：63<br>點滴袋容量：342/500ml<br>預測剩餘時間：00:32:46<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
+            $(".row1").append(txt1);
+            // 點擊設備事件 <<目前有點狀況
+            $('#col'+i).click(function(){
+                CPopup(i);
+            });
+            // 加入水波顏色 , 加入水波高度        
+            if (pa[i-1]>=90){
+                $('#col'+i).addClass('col_blue');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -430px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -440px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
+            } else if (pa[i-1]>=80){
+                $('#col'+i).addClass('col_blue');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -410px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -420px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
+            } else if (pa[i-1]>=70){
+                $('#col'+i).addClass('col_blue');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -390px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -400px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            } else if (pa[i-1]>=60){
+                $('#col'+i).addClass('col_blue');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -370px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -380px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            } else if (pa[i-1]>=50){
+                $('#col'+i).addClass('col_blue');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -350px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -360px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            } else if (pa[i-1]>=40){
+                $('#col'+i).addClass('col_yellow');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -330px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -340px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            } else if (pa[i-1]>=30){
+                $('#col'+i).addClass('col_yellow');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -310px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -320px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            } else if (pa[i-1]>=20){
+                $('#col'+i).addClass('col_yellow');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -290px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -300px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            } else if (pa[i-1]>=10){
+                $('#col'+i).addClass('col_red');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -270px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -280px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            } else{
+                $('#col'+i).addClass('col_red');
+                document.styleSheets[0].addRule('.bgbox'+i+':before','top: -250px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+                document.styleSheets[0].addRule('.bgbox'+i+':after','top: -260px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
+            }
+            // 加入百分比數字
+            document.styleSheets[0].addRule('.infobox'+i,'position: absolute; z-index: 1; width: 100%;');             
+            document.styleSheets[0].addRule('.infobox'+i+':after','content: "'+pa[i-1]+'%"; z-index:-1; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
         }
-        // 加入百分比數字
-        document.styleSheets[0].addRule('.infobox'+i,'position: absolute; z-index: 1; width: 100%;');             
-        document.styleSheets[0].addRule('.infobox'+i+':after','content: "'+pa[i-1]+'%"; z-index:-1; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
-
-    }
-
+    });
 
     // 顯示系統時間
     ShowTime();        
@@ -162,6 +164,34 @@ function ($scope, $stateParams, $ionicPopup) {
         var y3=NowDate.getDate();
         document.getElementById('timeStr').innerHTML = '系統時間：'+y1+'年'+y2+'月'+y3+'日'+h+'時'+m+'分'+s+'秒';
         setTimeout(ShowTime,1000);
+    }
+    // 將時間傳到ADN
+    SetTime();        
+    function SetTime(){
+        var NowDate=new Date();
+        var h=NowDate.getHours();
+        var m=NowDate.getMinutes();
+        var y1=NowDate.getFullYear();
+        var y2=NowDate.getMonth()+1;
+        if (y2<=10) {
+            y2 = '0'+y2;
+        }
+        var y3=NowDate.getDate();
+        if (y3<=10) {
+            y3 = '0'+y3;
+        }
+        var db = firebase.database();
+        db.ref("/aDi/").update({nowTime: y1+'/'+y2+'/'+y3+' '+h+':'+m},
+        function(error) {
+            if (error){
+                console.log("存入nowTime失敗");
+                console.log(error);
+            }
+            else{
+                console.log("存入nowTime成功");
+            }
+        });
+        setTimeout(SetTime,30000);
     }
 
     // 更新主頁的暱稱
