@@ -57,38 +57,62 @@ function ($scope, $stateParams, $ionicPopup) {
 // ----------------------------------------主頁面----------------------------------------
 .controller('page2Ctrl', ['$scope', '$stateParams', '$ionicPopup',
 function ($scope, $stateParams, $ionicPopup) {
-    // 彈出視窗    
-    function CPopup(i) {
-        console.log('這是編號'+i+'的設備');
-        $ionicPopup.prompt({
-            title: '更新容量',
-            template: '請輸入『點滴A00001』容量(ml)',
-            inputType: 'text',
-            inputPlaceholder: '500',
-            cancelText: '取消',
-            okText: '下一步'
-        }).then(function(res) {
-            if(res) {
-                console.log('容量 is', res);
-                $ionicPopup.prompt({
-                    title: '更新水量',
-                    template: '請輸入『點滴A00001』水量(ml)',
-                    inputType: 'text',
-                    inputPlaceholder: '300',
-                    cancelText: '取消',
-                    okText: '更新'
-                }).then(function(res) {
-                    if(res) {
-                        console.log('水量 is', res);
-                    } else {
-                        console.log('未輸入水量');
-                    }
-                });
-            } else {
-                console.log('未輸入容量');
+    // 檢查點擊何者設備
+    $(document).click(function(e){ 
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        firebase.database().ref('/aDi/device/').once('value').then(function(snapshot) {
+            for (var i=1;i<=Object.keys(snapshot.val()).length;i++) {
+                if ($(obj).is(".infobox"+i)) { 
+                    console.log('這是編號A'+i+'的點滴');
+                    // 彈出視窗
+                    var Nowi = i;
+                    $ionicPopup.prompt({
+                        title: '是否更新容器容量',
+                        template: '請輸入『點滴A'+i+'』的容器容量(ml)',
+                        inputType: 'text',
+                        cancelText: '否',
+                        okText: '是'
+                    }).then(function(res) {
+                        if(res) {
+                            firebase.database().ref("/aDi/device/A"+Nowi).update({capacity: res},function(error) {
+                                if (error){
+                                    console.log('更新A'+Nowi+'容器容量'+res+'失敗');
+                                    console.log('錯誤訊息'+error);
+                                }
+                                else{
+                                    console.log('更新A'+Nowi+'容器容量'+res+'成功');
+                                }
+                            });
+                            $ionicPopup.prompt({
+                                title: '是否更新剩餘水量',
+                                template: '請輸入『點滴A'+Nowi+'』的剩餘水量(ml)',
+                                inputType: 'text',
+                                cancelText: '否',
+                                okText: '是'
+                            }).then(function(res) {
+                                if(res) {
+                                    firebase.database().ref("/aDi/device/A"+Nowi).update({remainingML: res},function(error) {
+                                        if (error){
+                                            console.log('更新A'+Nowi+'剩餘水量'+res+'失敗');
+                                            console.log('錯誤訊息'+error);
+                                        }
+                                        else{
+                                            console.log('更新A'+Nowi+'剩餘水量'+res+'成功');
+                                        }
+                                    });
+                                } else {
+                                    console.log('未輸入剩餘水量，維持不變');
+                                }
+                            });
+                        } else {
+                            console.log('未輸入容器容量，維持不變');
+                        }
+                    });
+                }
             }
         });
-    }
+    });
 
     // 計數器 更新頁面資料
     ShowData();        
@@ -101,19 +125,18 @@ function ($scope, $stateParams, $ionicPopup) {
             
             // 動態加入開始
             for (var i=1;i<=device.length;i++){
-                var duration = eval('snapshot.val().A'+i+'.duration'); //(滴速) 取得 一滴要花的秒數
+                var capacity = eval('snapshot.val().A'+i+'.capacity'); //取得(容器容量) ml
+                var duration = eval('snapshot.val().A'+i+'.duration'); //取得(滴速) 一滴要花的秒數
                 duration = Math.round(60/duration);
-                
-                var remainingML =400 ; //(剩餘容量) ml
-                var remainingTIME = Math.round(remainingML*20/duration); //(剩餘時間) 分鐘
+                var remainingML = eval('snapshot.val().A'+i+'.remainingML') ; //取得(剩餘水量) ml
+                var remainingTIME = Math.round(remainingML*20/duration); //計算(剩餘時間) 分鐘
 
+                // 時間顯示
+                var NowDate=new Date();
+                NowDate = NowDate.getFullYear()+'/'+NowDate.getMonth()+1+'/'+NowDate.getDate()+' '+NowDate.getHours()+':'+NowDate.getMinutes();
                 // 加入Element
-                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>2017-12-07 04:07:20<br>護理師：Mary<br>病床號：A-3-01-00<br> <br>計算已滴數量:121(待處理)<br>滴速(滴量/分鐘)：'+duration+'<br>點滴容量：400/500ml<br>預測剩餘時間(分鐘)：'+remainingTIME+'<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
+                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>更新時間：'+NowDate+'<br>護理師：Mary<br>病床號：A-3-01-0'+i+'<br> <br>計算已滴數量:121(待處理)<br>滴速(滴量/分鐘)：'+duration+'<br>點滴容量：'+remainingML+'/'+capacity+'ml<br>預測剩餘時間(分鐘)：'+remainingTIME+'<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
                 $(".row1").append(txt1);
-                // 點擊設備事件 <<目前有點狀況
-                $('#col'+i).click(function(){
-                    CPopup(i);
-                });
                 // 加入水波顏色 , 加入水波高度        
                 if (pa[i-1]>=90){
                     $('#col'+i).addClass('col_blue');
