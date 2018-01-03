@@ -135,7 +135,7 @@ function ($scope, $stateParams, $ionicPopup) {
                 var NowDate=new Date();
                 NowDate = NowDate.getFullYear()+'/'+NowDate.getMonth()+1+'/'+NowDate.getDate()+' '+NowDate.getHours()+':'+NowDate.getMinutes();
                 // 加入Element
-                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>更新時間：'+NowDate+'<br>護理師：Mary<br>病床號：A-3-01-0'+i+'<br> <br>計算已滴數量:121(待處理)<br>滴速(滴量/分鐘)：'+duration+'<br>點滴容量：'+remainingML+'/'+capacity+'ml<br>預測剩餘時間(分鐘)：'+remainingTIME+'<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
+                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>更新時間：'+NowDate+'<br>護理師：Mary<br>病床號：C-502-'+i+'<br>藥品名稱：tinidazole<br>已滴水量:121ml(待處理)<br>滴速：'+duration+' 滴/分鐘<br>點滴容量：'+remainingML+'/'+capacity+' ml<br>預測剩餘時間：'+remainingTIME+' 分鐘<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
                 $(".row1").append(txt1);
                 // 加入水波顏色 , 加入水波高度        
                 if (pa>=90){
