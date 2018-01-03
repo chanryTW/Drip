@@ -122,6 +122,10 @@ function ($scope, $stateParams, $ionicPopup) {
         firebase.database().ref('/aDi/device/').once('value').then(function(snapshot) {
             var device = Object.keys(snapshot.val()); //取得設備名稱資料 將物件轉成矩陣
             
+            // 計算水的顏色個數
+            var counts_array=[];
+            var counts = {};
+
             // 動態加入開始
             for (var i=1;i<=device.length;i++){
                 var capacity = eval('snapshot.val().A'+i+'.capacity'); //取得(容器容量) ml
@@ -131,58 +135,83 @@ function ($scope, $stateParams, $ionicPopup) {
                 var remainingTIME = Math.round(remainingML*20/duration); //計算(剩餘時間) 分鐘
                 var pa = remainingML/capacity*100; //計算百分比
 
+                
+                
                 // 時間顯示
                 var NowDate=new Date();
                 NowDate = NowDate.getFullYear()+'/'+NowDate.getMonth()+1+'/'+NowDate.getDate()+' '+NowDate.getHours()+':'+NowDate.getMinutes();
                 // 加入Element
-                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>更新時間：'+NowDate+'<br>護理師：Mary<br>病床號：C-502-'+i+'<br>藥品名稱：tinidazole<br>已滴水量:121ml(待處理)<br>滴速：'+duration+' 滴/分鐘<br>點滴容量：'+remainingML+'/'+capacity+' ml<br>預測剩餘時間：'+remainingTIME+' 分鐘<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
+                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>更新時間：'+NowDate+'<br>護理師：Mary<br>病床號：C-502-'+i+'<br>藥品名稱：tinidazole<br>滴速：'+duration+' 滴/分鐘<br>已滴水量:121 ml(待處理)<br>點滴容量：'+remainingML+'/'+capacity+' ml<br>預測剩餘時間：'+remainingTIME+' 分鐘<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
                 $(".row1").append(txt1);
                 // 加入水波顏色 , 加入水波高度        
                 if (pa>=90){
                     $('#col'+i).addClass('col_blue');
+                    counts_array[i-1] = 1;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -430px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -440px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
                 } else if (pa>=80){
                     $('#col'+i).addClass('col_blue');
+                    counts_array[i-1] = 1;                    
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -410px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -420px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;');                 
                 } else if (pa>=70){
                     $('#col'+i).addClass('col_blue');
+                    counts_array[i-1] = 1;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -390px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -400px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 } else if (pa>=60){
                     $('#col'+i).addClass('col_blue');
+                    counts_array[i-1] = 1;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -370px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -380px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 } else if (pa>=50){
                     $('#col'+i).addClass('col_blue');
+                    counts_array[i-1] = 1;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -350px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -360px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 } else if (pa>=40){
                     $('#col'+i).addClass('col_yellow');
+                    counts_array[i-1] = 2;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -330px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -340px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 } else if (pa>=30){
                     $('#col'+i).addClass('col_yellow');
+                    counts_array[i-1] = 2;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -310px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -320px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 } else if (pa>=20){
                     $('#col'+i).addClass('col_yellow');
+                    counts_array[i-1] = 2;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -290px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -300px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 } else if (pa>=10){
                     $('#col'+i).addClass('col_red');
+                    counts_array[i-1] = 3;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -270px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -280px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 } else{
                     $('#col'+i).addClass('col_red');
+                    counts_array[i-1] = 3;
                     document.styleSheets[0].addRule('.bgbox'+i+':before','top: -250px; border-radius: 190px; background-color: rgba(255, 255, 255, 0.424); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                     document.styleSheets[0].addRule('.bgbox'+i+':after','top: -260px; border-radius: 170px; background-color: rgb(255, 255, 255); content: " "; position: absolute; width: 450px; height: 450px; left: 50%; animation: wave 30s infinite linear;'); 
                 }
                 // 加入百分比數字
                 document.styleSheets[0].addRule('.infobox'+i,'position: absolute; z-index: 1; width: 100%;');             
-                document.styleSheets[0].addRule('.infobox'+i+':after','content: "'+pa+'%"; z-index:-1; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);'); 
+                document.styleSheets[0].addRule('.infobox'+i+':after','content: "'+pa+'%"; z-index:-1; font-size: 80px; color: rgba(255, 255, 255, 0.514); position: absolute; top: 130px; left: 50%; transform: translateX(-50%);');              
             }
+            // 更新頁面上的水顏色個數
+            counts_array.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+            var c = [];            
+            for (i=1;i<=3;i++) {
+                if (counts[i]==undefined) {
+                    c[i-1] = 0;                    
+                } else {
+                    c[i-1] = counts[i];   
+                }
+            }         
+            document.getElementById('sumBlue').innerHTML = '處於藍色正常的點滴：'+c[0]+'個';
+            document.getElementById('sumYellow').innerHTML = '處於黃色正常的點滴：'+c[1]+'個';
+            document.getElementById('sumRed').innerHTML = '處於紅色正常的點滴：'+c[2]+'個';
         });
         setTimeout(ShowData,30000);
     }
