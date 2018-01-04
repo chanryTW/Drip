@@ -128,6 +128,8 @@ function ($scope, $stateParams, $ionicPopup) {
 
             // 動態加入開始
             for (var i=1;i<=device.length;i++){
+                var device_per = eval('snapshot.val().A'+i+'.護理師'); //取得(護理師名稱)
+                var device_bed = eval('snapshot.val().A'+i+'.病床號'); //取得(病床號)
                 var capacity = eval('snapshot.val().A'+i+'.capacity'); //取得(容器容量) ml
                 var duration = eval('snapshot.val().A'+i+'.duration'); //取得(滴速) 一滴要花的秒數
                 duration = Math.round(60/duration);
@@ -141,7 +143,7 @@ function ($scope, $stateParams, $ionicPopup) {
                 var NowDate=new Date();
                 NowDate = NowDate.getFullYear()+'/'+NowDate.getMonth()+1+'/'+NowDate.getDate()+' '+NowDate.getHours()+':'+NowDate.getMinutes();
                 // 加入Element
-                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>更新時間：'+NowDate+'<br>護理師：Mary<br>病床號：C-502-'+i+'<br>藥品名稱：tinidazole<br>滴速：'+duration+' 滴/分鐘<br>已滴水量:121 ml(待處理)<br>點滴容量：'+remainingML+'/'+capacity+' ml<br>預測剩餘時間：'+remainingTIME+' 分鐘<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
+                var txt1 = '<div class="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="col'+i+'"><div class="infobox'+i+'">點滴編號：A'+i+'<br>更新時間：'+NowDate+'<br>護理師：'+device_per+'<br>病床號：'+device_bed+'<br>藥品名稱：tinidazole<br>滴速：'+duration+' 滴/分鐘<br>已滴水量:121 ml(待處理)<br>點滴容量：'+remainingML+'/'+capacity+' ml<br>預測剩餘時間：'+remainingTIME+' 分鐘<br></div><div class="bgbox'+i+'"></div><br><br><br><br><br><br><br><br><br></div>';
                 $(".row1").append(txt1);
                 // 加入水波顏色 , 加入水波高度        
                 if (pa>=90){
