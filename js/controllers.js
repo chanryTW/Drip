@@ -58,7 +58,7 @@ function ($scope, $stateParams, $ionicPopup) {
 .controller('page2Ctrl', ['$scope', '$stateParams', '$ionicPopup',
 function ($scope, $stateParams, $ionicPopup) {
     // 自動新增資料
-    // for (i=5;i<=15;i++) {
+    // for (i=16;i<=18;i++) {
     //     firebase.database().ref("/aDi/device/A"+i).update({護理師: 'Mary',病床號: 'C-502-'+i,capacity:500,remainingML:500},
     //     function (error) {
     //         if (error) {
