@@ -57,6 +57,20 @@ function ($scope, $stateParams, $ionicPopup) {
 // ----------------------------------------主頁面----------------------------------------
 .controller('page2Ctrl', ['$scope', '$stateParams', '$ionicPopup',
 function ($scope, $stateParams, $ionicPopup) {
+    // 自動新增資料
+    // for (i=5;i<=15;i++) {
+    //     firebase.database().ref("/aDi/device/A"+i).update({護理師: 'Mary',病床號: 'C-502-'+i,capacity:500,remainingML:500},
+    //     function (error) {
+    //         if (error) {
+    //             console.log("新增設備失敗");
+    //             console.log(error);
+    //         }
+    //         else {
+    //             console.log("新增設備成功");
+    //         }
+    //     });
+    // }
+
     // 檢查點擊何者設備
     $(document).click(function(e){ 
         e = window.event || e; // 兼容IE7
@@ -213,7 +227,7 @@ function ($scope, $stateParams, $ionicPopup) {
             document.getElementById('sumYellow').innerHTML = '處於黃色正常的點滴：'+c[1]+'個';
             document.getElementById('sumRed').innerHTML = '處於紅色正常的點滴：'+c[2]+'個';
         });
-        setTimeout(ShowData,30000);
+        setTimeout(ShowData,20000);
     }
 
     // 計時器 顯示系統時間
