@@ -253,7 +253,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
             template: '新增設備中...'
         });
         var db = firebase.database();
-        db.ref("/aDi/device/"+device_num.value).update({護理師: device_per.value,病床號: device_bed.value},
+        db.ref("/aDi/device/"+device_num.value).update({護理師: device_per.value,病床號: device_bed.value,capacity:500,remainingML:500},
         function (error) {
             if (error) {
                 console.log("新增設備失敗");
