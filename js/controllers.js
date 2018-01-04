@@ -137,8 +137,6 @@ function ($scope, $stateParams, $ionicPopup) {
                 var remainingTIME = Math.round(remainingML*20/duration); //計算(剩餘時間) 分鐘
                 var pa = remainingML/capacity*100; //計算百分比
 
-                
-                
                 // 時間顯示
                 var NowDate=new Date();
                 NowDate = NowDate.getFullYear()+'/'+NowDate.getMonth()+1+'/'+NowDate.getDate()+' '+NowDate.getHours()+':'+NowDate.getMinutes();
@@ -245,7 +243,37 @@ function ($scope, $stateParams, $ionicPopup) {
 // ----------------------------------------設定頁面----------------------------------------
 .controller('page4Ctrl', ['$scope', '$stateParams', '$ionicLoading', '$ionicPopup',
 function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
-    
+    // 新增設備
+    var device_savebtn1 = document.getElementById("device_savebtn1");
+    var device_num = document.getElementById("device_num");
+    var device_per = document.getElementById("device_per");
+    var device_bed = document.getElementById("device_bed");
+    device_savebtn1.addEventListener("click",function(){
+        $ionicLoading.show({ // 開始跑圈圈
+            template: '新增設備中...'
+        });
+        var db = firebase.database();
+        db.ref("/aDi/device/"+device_num.value).update({護理師: device_per.value,病床號: device_bed.value},
+        function (error) {
+            if (error) {
+                console.log("新增設備失敗");
+                $ionicLoading.hide();
+                console.log(error);
+                var alertPopup = $ionicPopup.alert({
+                    title: '新增設備失敗',
+                    template: error
+                });
+            }
+            else {
+                console.log("新增設備成功");
+                $ionicLoading.hide();
+                var alertPopup = $ionicPopup.alert({
+                    title: '成功',
+                    template: '新增設備'+device_num.value+'完成。'
+                });
+            }
+        });
+    });
     
     // 修改暱稱功能
     var SaveBtn1 = document.getElementById("page4_savebtn1");
