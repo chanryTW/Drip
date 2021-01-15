@@ -13,7 +13,7 @@ function ($scope, $stateParams, $ionicPopup) {
             console.log("登入成功");
             accountL.value="";
             pwdL.value="";
-            open("/ChanryTW2/#/page1/page2",'_self');
+            open("/Drip/#/page1/page2",'_self');
             // window.location.reload();
         }).catch(function(error) {
             var errorCode = error.code;
@@ -378,7 +378,7 @@ function ($scope, $stateParams, $ionicLoading, $ionicPopup) {
         firebase.auth().signOut().then(function() {
             console.log("登出成功");
             localStorage.clear();
-            open("/ChanryTW2/#/page5",'_self');
+            open("/Drip/#/page5",'_self');
         }).catch(function(error) {
             console.log("登出發生錯誤!");
         });
